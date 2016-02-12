@@ -15,13 +15,13 @@ public class ByteBufferExample {
 
         try {
             RandomAccessFile file = new RandomAccessFile("colors.xml", "rw");
-            FileChannel inChannel = file.getChannel();
+            FileChannel channel = file.getChannel();
 
-            // Create buffer with capacity of 48 bytes
+            // Create buffer with capacity of 48 bytes (fixed size)
             ByteBuffer buf = ByteBuffer.allocate(SIZE_BYTE);
 
             // Read into buffer
-            int byteRead = inChannel.read(buf);
+            int byteRead = channel.read(buf);
             System.out.println("Read byte : " + byteRead);
 
             while (byteRead != -1) {
@@ -33,9 +33,10 @@ public class ByteBufferExample {
 
                 // Make buffer ready for writing
                 buf.clear();
-                byteRead = inChannel.read(buf);
+                byteRead = channel.read(buf);
             }
 
+            channel.close();
             file.close();
         } catch (IOException e) {
             System.out.println(e.getStackTrace());
