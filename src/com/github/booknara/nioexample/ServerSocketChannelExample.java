@@ -33,7 +33,7 @@ public class ServerSocketChannelExample {
 
     public static void listenNonBlockServerSocketChannel() {
         try {
-            ServerSocketChannel serverSocketChannel = createServerSocketChannel(true);
+            ServerSocketChannel serverSocketChannel = createServerSocketChannel(false);
 
             while (true) {
                 SocketChannel socketChannel = serverSocketChannel.accept();
